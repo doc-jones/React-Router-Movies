@@ -10,21 +10,20 @@ export default class Movie extends Component {
   }
 
   componentDidMount() {
-    // change this line to grab the id passed on the URL
-    const id = 1;
-    this.fetchMovie(id);
+    this.fetchMovie(this.props.match.params.id)
   }
 
-  fetchMovie = id => {
+  fetchMovie = (id) => {
+    // change this line to grab the id passed on the URL
     axios
       .get(`http://localhost:5000/api/movies/${id}`)
       .then(response => {
-        this.setState(() => ({ movie: response.data }));
+        this.setState(() => ({ movie: response.data }))
       })
       .catch(error => {
         console.error(error);
       });
-  };
+  }
   // Uncomment this code when you're ready for the stretch problems
   // componentWillReceiveProps(newProps){
   //   if(this.props.match.params.id !== newProps.match.params.id){
